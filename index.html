@@ -1,134 +1,323 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Finacle Countdown</title>
-<style>
-  body {
-    margin: 0; padding: 0;
-    font-family: "Poppins", sans-serif;
-    background: linear-gradient(135deg, #F05A22, #FF7B45);
-    color: #fff;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    height: 100vh;
-    overflow: hidden; position: relative;
-  }
-  .gtco-logo {
-    position: absolute; top: 20px; right: 20px; width: 120px; filter: drop-shadow(0 0 5px rgba(0,0,0,0.3)); z-index: 10;
-  }
-  h1 { font-weight: 600; font-size: 3rem; margin-bottom: 20px; letter-spacing: 1px; color: white; text-align: center; text-shadow: 2px 2px 10px rgba(0,0,0,0.3);}
-  #countdown-container {text-align: center; margin-bottom: 20px; z-index: 5;}
-  #countdown {display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;}
-  .time-box {background-color: white; color: #F05A22; border-radius: 15px; box-shadow: 0 6px 15px rgba(0,0,0,0.25); min-width: 120px; padding: 25px 30px; text-align: center; transition: transform 0.3s;}
-  .time-box:hover {transform: scale(1.05);}
-  .time-box span:first-child {font-size: 3.8rem; font-weight: bold;}
-  .label {font-size: 1.2rem; margin-top: 8px; text-transform: uppercase; font-weight: 600;}
-  #slideshow {position: relative; width: 90%; max-width: 1100px; height: 400px; overflow: hidden; border-radius: 20px; box-shadow: 0 0 30px rgba(0,0,0,0.4); background: #fff; display: flex; align-items: center; justify-content: center; text-align: center; z-index: 2;}
-  .slide {position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition: opacity 1.5s ease-in-out; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:40px; color:#333; background-size:cover; background-position:center;}
-  .slide.active {opacity:1; z-index:1;}
-  .slide p {font-size:1.6rem; font-weight:500; max-width:80%; line-height:1.6; background: rgba(255,255,255,0.85); padding:20px 30px; border-radius:12px; box-shadow:0 5px 20px rgba(0,0,0,0.2);}
-  .highlight {color:#F05A22; font-weight:700;}
-  @media (max-width:700px){h1{font-size:2rem;} .slide p{font-size:1.1rem;padding:15px;} .gtco-logo{width:90px;}}
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finacle Countdown - GTBank</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/commons/2/28/GTCO_logo.svg">
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #F05A22, #FF7B45);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            padding: 20px 0;
+        }
+        .gtco-logo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 120px;
+            filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
+            z-index: 1000;
+        }
+        .main-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .countdown-title {
+            font-weight: 600;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .time-box {
+            background-color: white;
+            color: #F05A22;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+            padding: 20px 10px;
+            text-align: center;
+            transition: transform 0.3s;
+            height: 100%;
+            margin: 5px;
+        }
+        .time-box:hover {
+            transform: scale(1.05);
+        }
+        .time-number {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: bold;
+            line-height: 1;
+            display: block;
+        }
+        .time-label {
+            font-size: clamp(0.8rem, 2vw, 1.1rem);
+            margin-top: 8px;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: block;
+        }
+        .slideshow-container {
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.4);
+            background: #fff;
+            overflow: hidden;
+            margin: 30px auto;
+            min-height: 300px;
+            max-width: 95%;
+        }
+        .slide {
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #333;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .slide-content {
+            background: rgba(255,255,255,0.92);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            max-width: 95%;
+            width: 100%;
+        }
+        .slide-text {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            font-weight: 500;
+            line-height: 1.5;
+            margin: 0;
+            text-align: center;
+        }
+        .highlight {
+            color: #F05A22;
+            font-weight: 700;
+        }
+        .date-title {
+            font-weight: 600;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            margin-top: 20px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        /* Mobile-first responsive design */
+        @media (max-width: 576px) {
+            body {
+                padding: 60px 0 20px 0;
+            }
+            .gtco-logo {
+                width: 80px;
+                top: 10px;
+                right: 10px;
+            }
+            .time-box {
+                padding: 15px 8px;
+                margin: 3px;
+            }
+            .slideshow-container {
+                min-height: 250px;
+                margin: 20px auto;
+            }
+            .slide {
+                height: 250px;
+                padding: 15px;
+            }
+            .slide-content {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .time-box {
+                padding: 12px 5px;
+            }
+            .time-number {
+                font-size: 1.8rem;
+            }
+            .time-label {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Ensure proper spacing on all devices */
+        .countdown-row {
+            margin: 0 -5px;
+        }
+        .countdown-col {
+            padding: 0 5px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-<img src="https://upload.wikimedia.org/wikipedia/commons/2/28/GTCO_logo.svg" alt="GTCO Logo" class="gtco-logo" />
-<div id="countdown-container">
-  <h1>FINACLE CUTOVER IN</h1>
-  <div id="countdown">
-    <div class="time-box"><span id="days">00</span><span class="label">DAYS</span></div>
-    <div class="time-box"><span id="hours">00</span><span class="label">HOURS</span></div>
-    <div class="time-box"><span id="minutes">00</span><span class="label">MINUTES</span></div>
-    <div class="time-box"><span id="seconds">00</span><span class="label">SECONDS</span></div>
-  </div>
-</div>
-
-<div id="slideshow"></div>
-
-<h1>December 07, 2025</h1>
-
-<script>
-// --- Countdown ---
-const targetDate = new Date("2025-12-07T23:00:00").getTime();
-const daysEl=document.getElementById("days");
-const hoursEl=document.getElementById("hours");
-const minutesEl=document.getElementById("minutes");
-const secondsEl=document.getElementById("seconds");
-function updateCountdown(){
-  const now = new Date().getTime();
-  const distance = targetDate - now;
-  if(distance<0){document.getElementById("countdown").innerHTML="🎉 Cutover Completed!"; clearInterval(interval); return;}
-  const days=Math.floor(distance/(1000*60*60*24));
-  const hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-  const minutes=Math.floor((distance%(1000*60*60))/(1000*60));
-  const seconds=Math.floor((distance%(1000*60))/1000);
-  daysEl.textContent=String(days).padStart(2,"0");
-  hoursEl.textContent=String(hours).padStart(2,"0");
-  minutesEl.textContent=String(minutes).padStart(2,"0");
-  secondsEl.textContent=String(seconds).padStart(2,"0");
-}
-const interval=setInterval(updateCountdown,1000);
-updateCountdown();
-
-// --- Facts Array ---
-const facts=[
-"Finacle is developed by Infosys, one of the world's leading banking technology providers. It's used by over <span class='highlight'>100 countries</span> and more than <span class='highlight'>450 banks</span> worldwide.",
-"Finacle stands for <span class='highlight'>Financial Network</span> and <span class='highlight'>Integrated Computerized Accounting Logic Engine</span>.",
-"Finacle is a browser-based application — you can access it from any authorized system on the bank's network.",
-"Finacle supports real-time processing — once a transaction is posted, it updates the core records instantly.",
-"Finacle can handle multiple branches, currencies, and products all within one system.",
-"Finacle integrates seamlessly with digital channels like mobile and internet banking.",
-"Finacle is modular — each department (Deposits, Loans, GL, etc.) has dedicated modules.",
-"The new version of Finacle offers faster transaction speeds and improved interface navigation.",
-"Finacle has role-based access — users only see menus relevant to their department.",
-"Finacle uses parameterization, allowing banks to configure products and charges without new coding.",
-"Always log in with your unique <span class='highlight'>User ID</span> and password assigned by the system administrator.",
-"Finacle supports <span class='highlight'>two-factor authentication</span> for sensitive roles.",
-"Change your password anytime using the CHGPWD menu.",
-"After 3 incorrect login attempts, your account automatically locks for security.",
-"Every screen in Finacle has a function code — type it to navigate quickly.",
-"The F4 key (Clear) cancels a current operation in Finacle.",
-"The F3 key (Go) executes or proceeds with a menu option.",
-"The F2 key displays a list of possible options for a field (picklist).",
-"The F1 key provides context help on the current field.",
-"Finacle automatically logs out idle users after a set time for security.",
-"Every customer in Finacle has a unique <span class='highlight'>CIF</span> number.",
-// ... continue all 100 facts in same format
-];
-
-// --- Background Images ---
-const bgImages=[
-  "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-  "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2011&q=80",
-  "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1521336575822-6da63fb45455?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-  "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-  "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-  "https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=800&q=80"
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/28/GTCO_logo.svg" alt="GTCO Logo" class="gtco-logo d-none d-md-block" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/28/GTCO_logo.svg" alt="GTCO Logo" class="gtco-logo d-md-none" style="width: 70px; top: 10px; right: 10px;" />
     
-];
+    <div class="container main-container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center mb-4">
+                <h1 class="countdown-title">FINACLE CUTOVER IN</h1>
+            </div>
+            
+            <div class="col-12">
+                <div class="row countdown-row justify-content-center">
+                    <div class="col-6 col-sm-3 countdown-col">
+                        <div class="time-box">
+                            <span class="time-number" id="days">00</span>
+                            <span class="time-label">DAYS</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-3 countdown-col">
+                        <div class="time-box">
+                            <span class="time-number" id="hours">00</span>
+                            <span class="time-label">HOURS</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-3 countdown-col">
+                        <div class="time-box">
+                            <span class="time-number" id="minutes">00</span>
+                            <span class="time-label">MINUTES</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-3 countdown-col">
+                        <div class="time-box">
+                            <span class="time-number" id="seconds">00</span>
+                            <span class="time-label">SECONDS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-// --- Generate Slides ---
-const slideshow=document.getElementById("slideshow");
-facts.forEach((fact,i)=>{
-  const slide=document.createElement("div");
-  slide.className="slide"+(i===0?" active":"");
-  slide.style.backgroundImage=`url(${bgImages[i%bgImages.length]})`;
-  slide.innerHTML=`<p>${fact}</p>`;
-  slideshow.appendChild(slide);
-});
+        <div class="row justify-content-center mt-4">
+            <div class="col-12">
+                <div class="slideshow-container" id="slideshow">
+                    <!-- Slides will be generated by JavaScript -->
+                </div>
+            </div>
+        </div>
 
-// --- Slideshow Logic ---
-const slides=document.querySelectorAll(".slide");
-let currentIndex=0;
-function showNextSlide(){
-  slides[currentIndex].classList.remove("active");
-  currentIndex=(currentIndex+1)%slides.length;
-  slides[currentIndex].classList.add("active");
-}
-setInterval(showNextSlide,7000);
-</script>
+        <div class="row justify-content-center mt-3">
+            <div class="col-12 text-center">
+                <h2 class="date-title">December 07, 2025</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // --- Countdown ---
+        const targetDate = new Date("2025-12-07T23:00:00").getTime();
+        const daysEl = document.getElementById("days");
+        const hoursEl = document.getElementById("hours");
+        const minutesEl = document.getElementById("minutes");
+        const secondsEl = document.getElementById("seconds");
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            
+            if (distance < 0) {
+                document.getElementById("countdown").innerHTML = `
+                    <div class="col-12">
+                        <div class="alert alert-success text-center fs-4 fs-md-3" role="alert">
+                            🎉 Cutover Completed!
+                        </div>
+                    </div>`;
+                clearInterval(interval);
+                return;
+            }
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            daysEl.textContent = String(days).padStart(2, "0");
+            hoursEl.textContent = String(hours).padStart(2, "0");
+            minutesEl.textContent = String(minutes).padStart(2, "0");
+            secondsEl.textContent = String(seconds).padStart(2, "0");
+        }
+
+        const interval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // --- Facts Array ---
+        const facts = [
+            "Finacle is developed by Infosys, one of the world's leading banking technology providers. It's used by over <span class='highlight'>100 countries</span> and more than <span class='highlight'>450 banks</span> worldwide.",
+            "Finacle stands for <span class='highlight'>Financial Network</span> and <span class='highlight'>Integrated Computerized Accounting Logic Engine</span>.",
+            "Finacle is a browser-based application — you can access it from any authorized system on the bank's network.",
+            "Finacle supports real-time processing — once a transaction is posted, it updates the core records instantly.",
+            "Finacle can handle multiple branches, currencies, and products all within one system.",
+            "Finacle integrates seamlessly with digital channels like mobile and internet banking.",
+            "Finacle is modular — each department (Deposits, Loans, GL, etc.) has dedicated modules.",
+            "The new version of Finacle offers faster transaction speeds and improved interface navigation.",
+            "Finacle has role-based access — users only see menus relevant to their department.",
+            "Finacle uses parameterization, allowing banks to configure products and charges without new coding."
+        ];
+
+        // --- Background Images ---
+        const bgImages = [
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+            "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2011&q=80",
+            "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1521336575822-6da63fb45455?auto=format&fit=crop&w=800&q=80"
+        ];
+
+        // --- Generate Slides ---
+        const slideshow = document.getElementById("slideshow");
+        let activeSlideIndex = 0;
+
+        facts.forEach((fact, i) => {
+            const slide = document.createElement("div");
+            slide.className = `slide ${i === 0 ? "d-flex" : "d-none"}`;
+            slide.style.backgroundImage = `url(${bgImages[i % bgImages.length]})`;
+            slide.innerHTML = `
+                <div class="slide-content">
+                    <p class="slide-text">${fact}</p>
+                </div>
+            `;
+            slideshow.appendChild(slide);
+        });
+
+        // --- Slideshow Logic ---
+        const slides = document.querySelectorAll(".slide");
+        
+        function showNextSlide() {
+            if (slides.length === 0) return;
+            
+            slides[activeSlideIndex].classList.remove("d-flex");
+            slides[activeSlideIndex].classList.add("d-none");
+            
+            activeSlideIndex = (activeSlideIndex + 1) % slides.length;
+            
+            slides[activeSlideIndex].classList.remove("d-none");
+            slides[activeSlideIndex].classList.add("d-flex");
+        }
+
+        // Start slideshow only if we have slides
+        if (facts.length > 0) {
+            setInterval(showNextSlide, 7000);
+        }
+    </script>
 </body>
 </html>
