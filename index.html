@@ -23,7 +23,7 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            width: 120px;
+            width: 100px; /* Reduced from 120px */
             filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
             z-index: 800;
         }
@@ -97,7 +97,7 @@
             width: 100%;
         }
         .slide-text {
-            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            font-size: clamp(1.2rem, 3vw, 1.68rem); /* Increased by 20% from 1.4rem */
             font-weight: 500;
             line-height: 1.5;
             margin: 0;
@@ -121,7 +121,7 @@
                 padding: 60px 0 20px 0;
             }
             .gtco-logo {
-                width: 80px;
+                width: 65px; /* Reduced from 80px */
                 top: 10px;
                 right: 10px;
             }
@@ -140,6 +140,9 @@
             .slide-content {
                 padding: 15px;
             }
+            .slide-text {
+                font-size: clamp(1.1rem, 2.5vw, 1.4rem); /* Adjusted for mobile */
+            }
         }
 
         @media (max-width: 400px) {
@@ -151,6 +154,9 @@
             }
             .time-label {
                 font-size: 0.7rem;
+            }
+            .gtco-logo {
+                width: 55px; /* Further reduced for very small screens */
             }
         }
 
@@ -185,7 +191,7 @@
                 max-width: 85%;
             }
             .slide-text {
-                font-size: 2rem;
+                font-size: 2.4rem; /* Increased by 20% from 2rem */
                 line-height: 1.6;
             }
             .date-title {
@@ -193,7 +199,7 @@
                 margin-top: 30px;
             }
             .gtco-logo {
-                width: 160px;
+                width: 130px; /* Reduced from 160px */
                 top: 30px;
                 right: 30px;
             }
@@ -226,13 +232,13 @@
                 padding: 40px 45px;
             }
             .slide-text {
-                font-size: 2.2rem;
+                font-size: 2.64rem; /* Increased by 20% from 2.2rem */
             }
             .date-title {
                 font-size: 3.5rem;
             }
             .gtco-logo {
-                width: 180px;
+                width: 145px; /* Reduced from 180px */
                 top: 40px;
                 right: 40px;
             }
@@ -267,7 +273,7 @@
                 max-width: 80%;
             }
             .slide-text {
-                font-size: 2.8rem;
+                font-size: 3.36rem; /* Increased by 20% from 2.8rem */
                 line-height: 1.7;
             }
             .date-title {
@@ -275,7 +281,7 @@
                 margin-top: 40px;
             }
             .gtco-logo {
-                width: 200px;
+                width: 160px; /* Reduced from 200px */
                 top: 50px;
                 right: 50px;
             }
@@ -293,7 +299,7 @@
 </head>
 <body>
     <img src="https://upload.wikimedia.org/wikipedia/commons/2/28/GTCO_logo.svg" alt="GTCO Logo" class="gtco-logo d-none d-md-block" />
-    <img src="https://upload.wikimedia.org/wikipedia/commons/2/28/GTCO_logo.svg" alt="GTCO Logo" class="gtco-logo d-md-none" style="width: 70px; top: 10px; right: 10px;" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/28/GTCO_logo.svg" alt="GTCO Logo" class="gtco-logo d-md-none" style="width: 55px; top: 10px; right: 10px;" />
     
     <div class="container main-container">
         <div class="row justify-content-center">
