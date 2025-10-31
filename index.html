@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,12 +20,12 @@
             padding: 20px 0;
         }
         .gtco-logo {
-            position: fixed;
+            position: absolute;
             top: 20px;
             right: 20px;
             width: 120px;
             filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
-            z-index: 1000;
+            z-index: 800;
         }
         .main-container {
             min-height: 100vh;
@@ -156,6 +154,133 @@
             }
         }
 
+        /* Smart TV Optimizations */
+        @media (min-width: 1400px) and (min-height: 800px) {
+            .countdown-title {
+                font-size: 4rem;
+                margin-bottom: 50px;
+            }
+            .time-box {
+                padding: 35px 25px;
+                margin: 10px;
+                border-radius: 20px;
+            }
+            .time-number {
+                font-size: 4.5rem;
+            }
+            .time-label {
+                font-size: 1.8rem;
+            }
+            .slideshow-container {
+                min-height: 450px;
+                max-width: 1400px;
+                margin: 40px auto;
+            }
+            .slide {
+                height: 450px;
+                padding: 40px;
+            }
+            .slide-content {
+                padding: 35px 40px;
+                max-width: 85%;
+            }
+            .slide-text {
+                font-size: 2rem;
+                line-height: 1.6;
+            }
+            .date-title {
+                font-size: 3rem;
+                margin-top: 30px;
+            }
+            .gtco-logo {
+                width: 160px;
+                top: 30px;
+                right: 30px;
+            }
+        }
+
+        @media (min-width: 1920px) and (min-height: 1080px) {
+            .countdown-title {
+                font-size: 4.5rem;
+                margin-bottom: 60px;
+            }
+            .time-box {
+                padding: 40px 30px;
+                margin: 15px;
+            }
+            .time-number {
+                font-size: 5rem;
+            }
+            .time-label {
+                font-size: 2rem;
+            }
+            .slideshow-container {
+                min-height: 500px;
+                max-width: 1600px;
+            }
+            .slide {
+                height: 500px;
+                padding: 50px;
+            }
+            .slide-content {
+                padding: 40px 45px;
+            }
+            .slide-text {
+                font-size: 2.2rem;
+            }
+            .date-title {
+                font-size: 3.5rem;
+            }
+            .gtco-logo {
+                width: 180px;
+                top: 40px;
+                right: 40px;
+            }
+        }
+
+        @media (min-width: 2560px) and (min-height: 1440px) {
+            .countdown-title {
+                font-size: 5.5rem;
+                margin-bottom: 70px;
+            }
+            .time-box {
+                padding: 50px 40px;
+                margin: 20px;
+                border-radius: 25px;
+            }
+            .time-number {
+                font-size: 6rem;
+            }
+            .time-label {
+                font-size: 2.5rem;
+            }
+            .slideshow-container {
+                min-height: 600px;
+                max-width: 2000px;
+            }
+            .slide {
+                height: 600px;
+                padding: 60px;
+            }
+            .slide-content {
+                padding: 50px 55px;
+                max-width: 80%;
+            }
+            .slide-text {
+                font-size: 2.8rem;
+                line-height: 1.7;
+            }
+            .date-title {
+                font-size: 4rem;
+                margin-top: 40px;
+            }
+            .gtco-logo {
+                width: 200px;
+                top: 50px;
+                right: 50px;
+            }
+        }
+
         /* Ensure proper spacing on all devices */
         .countdown-row {
             margin: 0 -5px;
@@ -262,128 +387,124 @@
         updateCountdown();
 
         // --- Facts Array ---
-const facts=[
-"Finacle is developed by <span class='highlight'>Infosys</span>, one of the world's leading banking technology providers. It's used by over <span class='highlight'>100 countries</span> and more than <span class='highlight'>450 banks</span> worldwide.",
-"Finacle stands for <span class='highlight'>Financial Network</span> and <span class='highlight'>Integrated Computerized Accounting Logic Engine</span>.",
-"Finacle is a <span class='highlight'>browser-based application</span> — you can access it from any authorized system on the bank's network.",
-"Finacle supports <span class='highlight'>real-time processing</span> — once a transaction is posted, it updates the core records instantly.",
-"Finacle can handle multiple <span class='highlight'>branches, currencies, and products</span> all within one system.",
-"Finacle integrates seamlessly with <span class='highlight'>digital channels</span> like mobile and internet banking.",
-"Finacle is <span class='highlight'>modular</span> — each department (Deposits, Loans, GL, etc.) has dedicated modules.",
-"The new version of Finacle offers <span class='highlight'>faster transaction speeds</span> and improved interface navigation.",
-"Finacle has <span class='highlight'>role-based access</span> — users only see menus relevant to their department.",
-"Finacle uses <span class='highlight'>parameterization</span>, allowing banks to configure products and charges without new coding.",
-"Always log in with your unique <span class='highlight'>User ID</span> and password assigned by the system administrator.",
-"Finacle supports <span class='highlight'>two-factor authentication</span> for sensitive roles.",
-"Change your password anytime using the <span class='highlight'>CHGPWD</span> menu.",
-"After <span class='highlight'>3 incorrect login attempts</span>, your account automatically locks for security.",
-"Every screen in Finacle has a <span class='highlight'>function code</span> — type it to navigate quickly.",
-"The <span class='highlight'>F4 key (Clear)</span> cancels a current operation in Finacle.",
-"The <span class='highlight'>F3 key (Go)</span> executes or proceeds with a menu option.",
-"The <span class='highlight'>F2 key</span> displays a list of possible options for a field (picklist).",
-"Did you know? The <span class='highlight'>F1 key</span> provides context help on the current field.",
-"Did you know? Finacle automatically logs out <span class='highlight'>idle users</span> after a set time for security.",
-"Did you know? Every customer in Finacle has a unique <span class='highlight'>CIF (Customer Information File)</span> number.",
-"Did you know? The <span class='highlight'>CIF</span> acts as a customer's identity across all branches and products.",
-"Did you know? You can retrieve customer details using the <span class='highlight'>CUMM</span> or <span class='highlight'>CUSTINQ</span> menu.",
-"Did you know? Updating a customer's information in one branch reflects across <span class='highlight'>all branches</span>.",
-"Did you know? Finacle allows <span class='highlight'>linking multiple accounts</span> under one CIF.",
-"Did you know? You can search customers by <span class='highlight'>name, CIF, or ID number</span>.",
-"Did you know? Finacle maintains a <span class='highlight'>complete history</span> of customer updates and modifications.",
-"Did you know? The system automatically checks for <span class='highlight'>duplicate CIF</span> creation.",
-"Did you know? You can view customer <span class='highlight'>risk classification</span> in their CIF record.",
-"Did you know? Finacle allows customer <span class='highlight'>photograph and signature upload</span> directly in the system.",
-"Did you know? Each account has an <span class='highlight'>Account ID</span> that uniquely identifies it in Finacle.",
-"Did you know? Accounts are linked to their <span class='highlight'>CIF and branch code</span>.",
-"Did you know? You can open new accounts using the <span class='highlight'>OAAC (Open Account)</span> menu.",
-"Did you know? To view account balance, use the <span class='highlight'>HACLI (Account Ledger Inquiry)</span> menu.",
-"Did you know? To check mini statement, use the <span class='highlight'>HACSP</span> menu.",
-"Did you know? Finacle automatically updates <span class='highlight'>interest and charges</span> during end-of-day processing.",
-"Did you know? You can view transaction history for any period using <span class='highlight'>HACLINQ</span>.",
-"Did you know? <span class='highlight'>Dormant accounts</span> are marked in red when you view account details.",
-"Did you know? Account reactivation can only be done by authorized users using <span class='highlight'>ACTR</span>.",
-"Did you know? Finacle allows both <span class='highlight'>individual and joint accounts</span> creation.",
-"Did you know? Cash deposits can be done using <span class='highlight'>HTM (Teller Menu)</span>.",
-"Did you know? Withdrawals are also processed using <span class='highlight'>HTM</span> — the transaction type determines debit or credit.",
-"Did you know? Every transaction in Finacle generates a <span class='highlight'>Transaction ID (TID)</span>.",
-"Did you know? You can view your teller transactions for the day using <span class='highlight'>HTI (Teller Inquiry)</span>.",
-"Did you know? <span class='highlight'>Suspense and sundry accounts</span> can be accessed with HFTI for reconciliation.",
-"Did you know? Finacle validates customer <span class='highlight'>signature automatically</span> when attached to an account.",
-"Did you know? Each transaction passes through <span class='highlight'>posting and authorization</span> stages.",
-"Did you know? <span class='highlight'>Dual authorization</span> ensures internal control and fraud prevention.",
-"Did you know? The system doesn't allow posting into <span class='highlight'>closed or frozen accounts</span>.",
-"Did you know? You cannot <span class='highlight'>overdraw savings account</span> in Finacle.",
-"Did you know? You cannot <span class='highlight'>close an account with balance</span> in Finacle.",
-"Did you know? You can print <span class='highlight'>transaction advice</span> directly from the HTM menu.",
-"Did you know? Loans are created in Finacle using the <span class='highlight'>LAACTD</span> or <span class='highlight'>LOANAC</span> menus.",
-"Did you know? Finacle automatically calculates <span class='highlight'>interest accruals</span> based on the product definition.",
-"Did you know? Repayments can be posted using <span class='highlight'>LAPR (Loan Payment Receipt)</span>.",
-"Did you know? You can view <span class='highlight'>outstanding loan balance</span> via HACLI.",
-"Did you know? <span class='highlight'>Loan accounts</span> are also linked to CIF like deposits.",
-"Did you know? Finacle supports <span class='highlight'>collateral and security registration</span> for loans.",
-"Did you know? The system automatically flags <span class='highlight'>delinquent or overdue accounts</span>.",
-"Did you know? You can generate <span class='highlight'>loan schedules</span> instantly.",
-"Did you know? Finacle supports <span class='highlight'>revolving credit lines</span> as well as term loans.",
-"Did you know? The <span class='highlight'>loan product definition</span> controls repayment type, rate, and schedule.",
-"Did you know? Finacle performs automatic <span class='highlight'>EOD (End of Day)</span> processing for all branches.",
-"Did you know? During <span class='highlight'>EOD</span>, no new postings can be made until completion.",
-"Did you know? <span class='highlight'>EOD</span> ensures all GL balances and reports are up to date.",
-"Did you know? You can view branch reports using <span class='highlight'>HPR (Print Report)</span>.",
-"Did you know? EOD is followed by <span class='highlight'>EOM (End of Month)</span> and <span class='highlight'>EOY (End of Year)</span> processes.",
-"Did you know? <span class='highlight'>EOD</span> can be re-initiated if any branch fails to close successfully.",
-"Did you know? The system automatically generates <span class='highlight'>trial balance and daily position</span> at EOD.",
-"Did you know? Reports can be exported in <span class='highlight'>PDF or Excel</span> format.",
-"Did you know? <span class='highlight'>Audit reports</span> show every transaction made by each teller.",
-"Did you know? Supervisors can track <span class='highlight'>unverified or pending transactions</span> using EOD reports.",
-"Did you know? Every Finacle user action is <span class='highlight'>logged</span> — nothing goes untracked.",
-"Did you know? Finacle uses <span class='highlight'>SSL encryption</span> to secure data.",
-"Did you know? <span class='highlight'>Unauthorized access attempts</span> are automatically recorded in the audit trail.",
-"Did you know? <span class='highlight'>Passwords expire</span> after a set number of days for security.",
-"Did you know? <span class='highlight'>Teller IDs</span> are tied to specific tills and cash limits.",
-"Did you know? Finacle enforces <span class='highlight'>maker-checker control</span> on sensitive transactions.",
-"Did you know? You should always <span class='highlight'>log out after use</span>.",
-"Did you know? The system <span class='highlight'>locks automatically</span> after a period of inactivity.",
-"Did you know? You should never <span class='highlight'>share your login details</span> with anyone.",
-"Did you know? Finacle supports <span class='highlight'>user role hierarchy</span>, helping segregate duties.",
-"Did you know? Finacle integrates directly with <span class='highlight'>ATM switch and card systems</span>.",
-"Did you know? <span class='highlight'>SMS and email alerts</span> are triggered in real-time from Finacle transactions.",
-"Did you know? Finacle connects with the bank's <span class='highlight'>mobile and internet banking</span> platforms.",
-"Did you know? Branches can view <span class='highlight'>real-time balances</span> of all other branches.",
-"Did you know? Finacle supports <span class='highlight'>cross-branch transactions (CBS)</span>.",
-"Did you know? It also interfaces with <span class='highlight'>SWIFT, RTGS, and EFT</span> systems.",
-"Did you know? Finacle supports <span class='highlight'>multi-currency and foreign exchange</span> transactions.",
-"Did you know? You can check <span class='highlight'>FX rates</span> directly within the system.",
-"Did you know? <span class='highlight'>Charges and commissions</span> are configured centrally in Finacle.",
-"Did you know? Finacle allows for <span class='highlight'>product customization</span> by business type and customer segment.",
-"Did you know? You can <span class='highlight'>bookmark</span> your most-used menus for faster access.",
-"Did you know? You can view your <span class='highlight'>last executed command</span> by pressing the up arrow key.",
-"Did you know? You can open <span class='highlight'>multiple tabs</span> to work on different menus simultaneously.",
-"Did you know? The <span class='highlight'>search bar</span> allows partial menu name lookup.",
-"Did you know? <span class='highlight'>System messages</span> are shown in yellow — always read them carefully.",
-"Did you know? You can use <span class='highlight'>F10</span> to commit or save transactions.",
-"Did you know? Always <span class='highlight'>verify before posting</span> to prevent reversal later.",
-"Did you know? You can print <span class='highlight'>account statements</span> directly from inquiry screens.",
-"Did you know? The <span class='highlight'>Help Desk</span> can reset your password within minutes if locked out.",
-"Did you know? The new Finacle version improves <span class='highlight'>teller speed, error handling, and data accuracy</span>, making your daily work smoother."
-];
-
+        const facts = [
+            "Finacle is developed by <span class='highlight'>Infosys</span>, one of the world's leading banking technology providers. It's used by over <span class='highlight'>100 countries</span> and more than <span class='highlight'>450 banks</span> worldwide.",
+            "Finacle stands for <span class='highlight'>Financial Network</span> and <span class='highlight'>Integrated Computerized Accounting Logic Engine</span>.",
+            "Finacle is a <span class='highlight'>browser-based application</span> — you can access it from any authorized system on the bank's network.",
+            "Finacle supports <span class='highlight'>real-time processing</span> — once a transaction is posted, it updates the core records instantly.",
+            "Finacle can handle multiple <span class='highlight'>branches, currencies, and products</span> all within one system.",
+            "Finacle integrates seamlessly with <span class='highlight'>digital channels</span> like mobile and internet banking.",
+            "Finacle is <span class='highlight'>modular</span> — each department (Deposits, Loans, GL, etc.) has dedicated modules.",
+            "The new version of Finacle offers <span class='highlight'>faster transaction speeds</span> and improved interface navigation.",
+            "Finacle has <span class='highlight'>role-based access</span> — users only see menus relevant to their department.",
+            "Finacle uses <span class='highlight'>parameterization</span>, allowing banks to configure products and charges without new coding.",
+            "Always log in with your unique <span class='highlight'>User ID</span> and password assigned by the system administrator.",
+            "Finacle supports <span class='highlight'>two-factor authentication</span> for sensitive roles.",
+            "Change your password anytime using the <span class='highlight'>CHGPWD</span> menu.",
+            "After <span class='highlight'>3 incorrect login attempts</span>, your account automatically locks for security.",
+            "Every screen in Finacle has a <span class='highlight'>function code</span> — type it to navigate quickly.",
+            "The <span class='highlight'>F4 key (Clear)</span> cancels a current operation in Finacle.",
+            "The <span class='highlight'>F3 key (Go)</span> executes or proceeds with a menu option.",
+            "The <span class='highlight'>F2 key</span> displays a list of possible options for a field (picklist).",
+            "The <span class='highlight'>F1 key</span> provides context help on the current field.",
+            "Finacle automatically logs out <span class='highlight'>idle users</span> after a set time for security.",
+            "Every customer in Finacle has a unique <span class='highlight'>CIF (Customer Information File)</span> number.",
+            "The <span class='highlight'>CIF</span> acts as a customer's identity across all branches and products.",
+            "You can retrieve customer details using the <span class='highlight'>CUMM</span> or <span class='highlight'>CUSTINQ</span> menu.",
+            "Updating a customer's information in one branch reflects across <span class='highlight'>all branches</span>.",
+            "Finacle allows <span class='highlight'>linking multiple accounts</span> under one CIF.",
+            "You can search customers by <span class='highlight'>name, CIF, or ID number</span>.",
+            "Finacle maintains a <span class='highlight'>complete history</span> of customer updates and modifications.",
+            "The system automatically checks for <span class='highlight'>duplicate CIF</span> creation.",
+            "You can view customer <span class='highlight'>risk classification</span> in their CIF record.",
+            "Finacle allows customer <span class='highlight'>photograph and signature upload</span> directly in the system.",
+            "Each account has an <span class='highlight'>Account ID</span> that uniquely identifies it in Finacle.",
+            "Accounts are linked to their <span class='highlight'>CIF and branch code</span>.",
+            "You can open new accounts using the <span class='highlight'>OAAC (Open Account)</span> menu.",
+            "To view account balance, use the <span class='highlight'>HACLI (Account Ledger Inquiry)</span> menu.",
+            "To check mini statement, use the <span class='highlight'>HACSP</span> menu.",
+            "Finacle automatically updates <span class='highlight'>interest and charges</span> during end-of-day processing.",
+            "You can view transaction history for any period using <span class='highlight'>HACLINQ</span>.",
+            "<span class='highlight'>Dormant accounts</span> are marked in red when you view account details.",
+            "Account reactivation can only be done by authorized users using <span class='highlight'>ACTR</span>.",
+            "Finacle allows both <span class='highlight'>individual and joint accounts</span> creation.",
+            "Cash deposits can be done using <span class='highlight'>HTM (Teller Menu)</span>.",
+            "Withdrawals are also processed using <span class='highlight'>HTM</span> — the transaction type determines debit or credit.",
+            "Every transaction in Finacle generates a <span class='highlight'>Transaction ID (TID)</span>.",
+            "You can view your teller transactions for the day using <span class='highlight'>HTI (Teller Inquiry)</span>.",
+            "<span class='highlight'>Suspense and sundry accounts</span> can be accessed with HFTI for reconciliation.",
+            "Finacle validates customer <span class='highlight'>signature automatically</span> when attached to an account.",
+            "Each transaction passes through <span class='highlight'>posting and authorization</span> stages.",
+            "<span class='highlight'>Dual authorization</span> ensures internal control and fraud prevention.",
+            "The system doesn't allow posting into <span class='highlight'>closed or frozen accounts</span>.",
+            "You cannot <span class='highlight'>overdraw savings account</span> in Finacle.",
+            "You cannot <span class='highlight'>close an account with balance</span> in Finacle.",
+            "You can print <span class='highlight'>transaction advice</span> directly from the HTM menu.",
+            "Loans are created in Finacle using the <span class='highlight'>LAACTD</span> or <span class='highlight'>LOANAC</span> menus.",
+            "Finacle automatically calculates <span class='highlight'>interest accruals</span> based on the product definition.",
+            "Repayments can be posted using <span class='highlight'>LAPR (Loan Payment Receipt)</span>.",
+            "You can view <span class='highlight'>outstanding loan balance</span> via HACLI.",
+            "<span class='highlight'>Loan accounts</span> are also linked to CIF like deposits.",
+            "Finacle supports <span class='highlight'>collateral and security registration</span> for loans.",
+            "The system automatically flags <span class='highlight'>delinquent or overdue accounts</span>.",
+            "You can generate <span class='highlight'>loan schedules</span> instantly.",
+            "Finacle supports <span class='highlight'>revolving credit lines</span> as well as term loans.",
+            "The <span class='highlight'>loan product definition</span> controls repayment type, rate, and schedule.",
+            "Finacle performs automatic <span class='highlight'>EOD (End of Day)</span> processing for all branches.",
+            "During <span class='highlight'>EOD</span>, no new postings can be made until completion.",
+            "<span class='highlight'>EOD</span> ensures all GL balances and reports are up to date.",
+            "You can view branch reports using <span class='highlight'>HPR (Print Report)</span>.",
+            "EOD is followed by <span class='highlight'>EOM (End of Month)</span> and <span class='highlight'>EOY (End of Year)</span> processes.",
+            "<span class='highlight'>EOD</span> can be re-initiated if any branch fails to close successfully.",
+            "The system automatically generates <span class='highlight'>trial balance and daily position</span> at EOD.",
+            "Reports can be exported in <span class='highlight'>PDF or Excel</span> format.",
+            "<span class='highlight'>Audit reports</span> show every transaction made by each teller.",
+            "Supervisors can track <span class='highlight'>unverified or pending transactions</span> using EOD reports.",
+            "Every Finacle user action is <span class='highlight'>logged</span> — nothing goes untracked.",
+            "Finacle uses <span class='highlight'>SSL encryption</span> to secure data.",
+            "<span class='highlight'>Unauthorized access attempts</span> are automatically recorded in the audit trail.",
+            "<span class='highlight'>Passwords expire</span> after a set number of days for security.",
+            "<span class='highlight'>Teller IDs</span> are tied to specific tills and cash limits.",
+            "Finacle enforces <span class='highlight'>maker-checker control</span> on sensitive transactions.",
+            "You should always <span class='highlight'>log out after use</span>.",
+            "The system <span class='highlight'>locks automatically</span> after a period of inactivity.",
+            "You should never <span class='highlight'>share your login details</span> with anyone.",
+            "Finacle supports <span class='highlight'>user role hierarchy</span>, helping segregate duties.",
+            "Finacle integrates directly with <span class='highlight'>ATM switch and card systems</span>.",
+            "<span class='highlight'>SMS and email alerts</span> are triggered in real-time from Finacle transactions.",
+            "Finacle connects with the bank's <span class='highlight'>mobile and internet banking</span> platforms.",
+            "Branches can view <span class='highlight'>real-time balances</span> of all other branches.",
+            "Finacle supports <span class='highlight'>cross-branch transactions (CBS)</span>.",
+            "It also interfaces with <span class='highlight'>SWIFT, RTGS, and EFT</span> systems.",
+            "Finacle supports <span class='highlight'>multi-currency and foreign exchange</span> transactions.",
+            "You can check <span class='highlight'>FX rates</span> directly within the system.",
+            "<span class='highlight'>Charges and commissions</span> are configured centrally in Finacle.",
+            "Finacle allows for <span class='highlight'>product customization</span> by business type and customer segment.",
+            "You can <span class='highlight'>bookmark</span> your most-used menus for faster access.",
+            "You can view your <span class='highlight'>last executed command</span> by pressing the up arrow key.",
+            "You can open <span class='highlight'>multiple tabs</span> to work on different menus simultaneously.",
+            "The <span class='highlight'>search bar</span> allows partial menu name lookup.",
+            "<span class='highlight'>System messages</span> are shown in yellow — always read them carefully.",
+            "You can use <span class='highlight'>F10</span> to commit or save transactions.",
+            "Always <span class='highlight'>verify before posting</span> to prevent reversal later.",
+            "You can print <span class='highlight'>account statements</span> directly from inquiry screens.",
+            "The <span class='highlight'>Help Desk</span> can reset your password within minutes if locked out.",
+            "The new Finacle version improves <span class='highlight'>teller speed, error handling, and data accuracy</span>, making your daily work smoother."
+        ];
 
         // --- Background Images ---
- const bgImages=[
-  "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-  "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2011&q=80",
-  "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1521336575822-6da63fb45455?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-  "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-  "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-  "https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1589156280159-27698a70f29e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2068&q=80",
-  "https://images.unsplash.com/photo-1553729459-efe14ef6055d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-  "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-  "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2011&q=80",
-  "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-];
+        const bgImages = [
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+            "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2011&q=80",
+            "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1521336575822-6da63fb45455?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+            "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+            "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+            "https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1589156280159-27698a70f29e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2068&q=80",
+            "https://images.unsplash.com/photo-1553729459-efe14ef6055d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+        ];
 
         // --- Generate Slides ---
         const slideshow = document.getElementById("slideshow");
